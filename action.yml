@@ -1,4 +1,4 @@
-name: 'Build'
+name: 'Okteto Build'
 description: 'Build an image from a Dockerfile using Okteto Cloud'
 inputs:
   tag:
@@ -23,3 +23,6 @@ runs:
     - ${{ inputs.file }}
     - ${{ inputs.path }}
     - ${{ inputs.buildargs }}
+branding:
+  color: 'green'
+  icon: 'layers'
