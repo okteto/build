@@ -7,7 +7,7 @@ Get started today with a [free Okteto Cloud account](https://cloud.okteto.com)!
 
 ## Github Action for Building your Containers in Okteto Cloud
 
-You can use this action to build an image from a Dockerfile using Okteto Cloud.
+You can use this action to build an image from a Dockerfile using Okteto Cloud's build service.
 
 ## Inputs
 
