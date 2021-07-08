@@ -58,7 +58,7 @@ jobs:
     - name: "Build"
       uses: okteto/build@master
       with:
-        tag: registry.cloud.okteto.net/cindy/hello-world:${{ github.sha }}
+        tag: okteto.dev/hello-world:${{ github.sha }}
 ```
 
 ## Advanced usage
@@ -90,5 +90,5 @@ jobs:
     - name: "Build"
       uses: okteto/build@master
       with:
-        tag: registry.cloud.okteto.net/cindy/hello-world:${{ github.sha }}
+        tag: okteto.dev/hello-world:${{ github.sha }}
  ```
