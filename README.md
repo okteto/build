@@ -51,12 +51,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - uses: okteto/login@master
+    - uses: okteto/login@latest
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
     
     - name: "Build"
-      uses: okteto/build@master
+      uses: okteto/build@latest
       with:
         tag: okteto.dev/hello-world:${{ github.sha }}
 ```
@@ -83,12 +83,12 @@ jobs:
        OKTETO_CA_CERT: ${{ secrets.OKTETO_CA_CERT }}
      steps:
      
-     - uses: okteto/login@master
+     - uses: okteto/login@latest
        with:
          token: ${{ secrets.OKTETO_TOKEN }}
      
     - name: "Build"
-      uses: okteto/build@master
+      uses: okteto/build@latest
       with:
         tag: okteto.dev/hello-world:${{ github.sha }}
  ```
