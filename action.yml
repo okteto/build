@@ -3,7 +3,7 @@ description: 'Build an image from a Dockerfile using Okteto Cloud'
 inputs:
   tag:
     description: 'Name and tag in the "name:tag" format'
-    required: true
+    required: false
   file:
     description: 'Name of the Dockerfile (Default is "Dockerfile")'
     required: false
