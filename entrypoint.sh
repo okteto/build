@@ -29,17 +29,22 @@ if [ -z "$tag" ]; then
   params=$(eval echo --progress plain -f "$file" "$BUILDPARAMS" "$path")
 fi
 
-if [ "$OKTETO_ENABLE_MANIFEST_V2" -eq "true" ]; then
-  if [ "$global" -eq "true" ]; then
-      GLOBALPARAMS="${GLOBALPARAMS} --global"
-  fi
+if [ ! -z "$OKTETO_ENABLE_MANIFEST_V2" ]; then
+  if [ "$OKTETO_ENABLE_MANIFEST_V2" = "true" ]; then
 
-  if [ ! "$path" -eq "." ]; then
-      PATHPARAMS="${PATHPARAMS} $path"
-  fi
+    if [ "$global" = "true" ]; then
+        GLOBALPARAMS="${GLOBALPARAMS} --global"
+    fi
 
-  if [ ! "$file" -eq "Dockerfile" ]; then
-      FILEPARAMS="${FILEPARAMS} -f $file"
+    if [ ! "$path" = "." ]; then
+        PATHPARAMS="${PATHPARAMS} $path"
+    fi
+
+    if [ ! -z "$file" ]; then
+      if [ ! "$file" = "Dockerfile" ]; then
+        FILEPARAMS="${FILEPARAMS} -f $file"
+      fi
+    fi
   fi
 
   params=$(eval echo --progress plain "$FILEPARAMS" "$BUILDPARAMS" "$GLOBALPARAMS" "$PATHPARAMS")
