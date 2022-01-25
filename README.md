@@ -13,7 +13,7 @@ You can use this action to build an image from a Dockerfile using Okteto Cloud's
 
 ### `tag`
 
-**Required**  Name and tag in the `name:tag` format.
+Name and tag in the `name:tag` format.
 
 ### `file`
 
