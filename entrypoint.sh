@@ -27,7 +27,7 @@ if [ -z "$tag" ]; then
 fi
 
 if [ "$OKTETO_ENABLE_MANIFEST_V2" = true && "$global" == true ]; then
-    params=$(eval echo --progress plain --global -f "$file" "$BUILDPARAMS" "$path")
+    params=$(eval echo --progress plain --global)
 fi
 
 echo running: okteto build $params
