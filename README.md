@@ -37,7 +37,7 @@ A list of environment variables as build-args
 
 ### `global`
 
-When true will make the image available to everyone in your team
+When true will make the image available to everyone in your team. Default `false`.
 ## Example usage
 
 This example runs the context action and then builds and pushes an image.
