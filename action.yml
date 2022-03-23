@@ -16,7 +16,7 @@ inputs:
     description: 'Use buildargs when you want to pass a list of environment variables as build-args'
     required: false
   global:
-    description: 'Use global when you want to push the image to the global registry'
+    description: 'Use global when you want to make the image availbale to everyone in your team'
     required: false
     default: false
 runs:

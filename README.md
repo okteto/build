@@ -35,6 +35,9 @@ A list of environment variables as build-args
         buildargs: PACKAGE_NAME,VCS_REF
 ```
 
+### `global`
+
+When true will make the image available to everyone in your team
 ## Example usage
 
 This example runs the context action and then builds and pushes an image.
