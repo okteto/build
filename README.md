@@ -7,37 +7,20 @@ Get started today with a [free Okteto Cloud account](https://cloud.okteto.com)!
 
 ## Github Action for Building your Containers in Okteto Cloud
 
-You can use this action to build an image from a Dockerfile using Okteto Cloud's build service.
+You can use this action to build images from an [Okteto Manifest](https://www.okteto.com/docs/reference/cli/).
 
 ## Inputs
 
-### `tag`
-
-Name and tag in the `name:tag` format.
-
 ### `file`
 
+The path to the Okteto Manifest. Default `"okteto.yml"`.
 Name of the Dockerfile. Default `"Dockerfile"`.
-
-### `path`
-
-The path to the files. Default `"."`.
-
-### `buildargs`
-
-A list of environment variables as build-args
-
-```yaml
-      env:
-        PACKAGE_NAME: svc-api
-        VCS_REF: ${{ github.sha }}
-      with:
-        buildargs: PACKAGE_NAME,VCS_REF
-```
 
 ### `global`
 
 When true will make the image available to everyone in your team. Default `false`.
+
+
 ## Example usage
 
 This example runs the context action and then builds and pushes an image.
@@ -60,8 +43,6 @@ jobs:
     
     - name: "Build"
       uses: okteto/build@latest
-      with:
-        tag: okteto.dev/hello-world:${{ github.sha }}
 ```
 
 ## Advanced usage
@@ -92,6 +73,4 @@ jobs:
      
     - name: "Build"
       uses: okteto/build@latest
-      with:
-        tag: okteto.dev/hello-world:${{ github.sha }}
  ```
