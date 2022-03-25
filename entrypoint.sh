@@ -8,7 +8,6 @@ args=$4
 global=$5
 
 BUILDPARAMS=""
-GLOBALPARAMS=""
 
 if [ ! -z "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
@@ -28,10 +27,10 @@ if [ -z "$tag" ]; then
 fi
 
 if [ "$global" = "true" ]; then
-    GLOBALPARAMS="${GLOBALPARAMS} --global"
+    params="${params} --global"
 fi
 
-params=$(eval echo "$params" "$GLOBALPARAMS")
+params=$(eval echo "$params")
 
 
 echo running: okteto build $params
