@@ -1,14 +1,11 @@
 #!/bin/sh
 set -e
 
-tag=$1
-file=$2
-services=$3
-args=$4
-global=$5
+file=$1
+services=$2
+global=$3
 
 BUILDPARAMS=""
-SERVICES=""
 
 if [ ! -z "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
@@ -16,28 +13,22 @@ if [ ! -z "$OKTETO_CA_CERT" ]; then
    update-ca-certificates
 fi
 
-if [ ! -z "${INPUT_BUILDARGS}" ]; then
-  for ARG in $(echo "${INPUT_BUILDARGS}" | tr "," "\n"); do
-    BUILDPARAMS="${BUILDPARAMS} --build-arg ${ARG}=\$${ARG}"
-  done
-fi
-
 if [ -z "$file" ]; then
   file="okteto.yml"
 fi
 
-params=$(eval echo --progress plain -t "$tag" -f "$file" "$BUILDPARAMS" )
-if [ -z "$tag" ]; then
-  params=$(eval echo --progress plain -f "$file" "$BUILDPARAMS")
-fi
-
+params=$(eval echo --progress plain -f "$file" )
 
 if [ "$global" = "true" ]; then
     params="${params} --global"
 fi
 
+SERVICESPARAMS=""
 if [ ! -z "$services" ]; then
-    params="${params} ${services}"
+  for s in $(echo $services | tr "," "\n"); do
+    SERVICESPARAMS="${SERVICESPARAMS} ${s}"
+  done
+    params="${params} ${SERVICESPARAMS}"
 fi
 
 params=$(eval echo "$params")

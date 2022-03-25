@@ -24,29 +24,12 @@ Build multiple services:
 
 ```yaml
 with:
-  services: "api frontend"
+  services:
+    - api
+    - frontend
 ```
 
-Build only one service:
-
-```yaml
-with:
-  services: "api"
-```
-
-Default is empty. This will build all the services.
-
-### `buildargs`
-
-A list of environment variables as build-args
-
-```yaml
-env:
-  PACKAGE_NAME: svc-api
-  VCS_REF: ${{ github.sha }}
-with:
-  buildargs: PACKAGE_NAME,VCS_REF
-```
+Default will build all the services.
 
 ### `global`
 
