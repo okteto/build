@@ -13,7 +13,7 @@ You can use this action to build an image from a Dockerfile using Okteto Cloud's
 
 ### `tag`
 
-**Required**  Name and tag in the `name:tag` format.
+Name and tag in the `name:tag` format.
 
 ### `file`
 
@@ -35,6 +35,9 @@ A list of environment variables as build-args
         buildargs: PACKAGE_NAME,VCS_REF
 ```
 
+### `global`
+
+When true will make the image available to everyone in your team. Default `false`.
 ## Example usage
 
 This example runs the context action and then builds and pushes an image.

@@ -5,6 +5,7 @@ tag=$1
 file=$2
 path=$3
 args=$4
+global=$5
 
 BUILDPARAMS=""
 
@@ -24,6 +25,13 @@ params=$(eval echo --progress plain -t "$tag" -f "$file" "$BUILDPARAMS" "$path")
 if [ -z "$tag" ]; then
   params=$(eval echo --progress plain -f "$file" "$BUILDPARAMS" "$path")
 fi
+
+if [ "$global" = "true" ]; then
+    params="${params} --global"
+fi
+
+params=$(eval echo "$params")
+
 
 echo running: okteto build $params
 okteto build $params
