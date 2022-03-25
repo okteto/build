@@ -2,16 +2,15 @@ name: 'Okteto Build'
 description: 'Build an image from a Dockerfile using Okteto Cloud'
 inputs:
   tag:
-    description: 'Name and tag in the "name:tag" format'
+    description: 'Name and tag in the 'name:tag' format'
     required: false
   file:
-    description: 'Name of the Dockerfile (Default is "Dockerfile")'
+    description: 'The path to the Okteto Manifest. Default `'okteto.yml'`
     required: false
-    default: 'Dockerfile'
-  path:
-    description: 'The path'
+    default: 'okteto.yml'
+  services:
+    description: 'Services to build. If none, all images at the okteto manifest will be built.'
     required: false
-    default: '.'
   buildargs:
     description: 'Use buildargs when you want to pass a list of environment variables as build-args'
     required: false
@@ -25,7 +24,7 @@ runs:
   args:
     - ${{ inputs.tag }}
     - ${{ inputs.file }}
-    - ${{ inputs.path }}
+    - ${{ inputs.services }}
     - ${{ inputs.buildargs }}
     - ${{ inputs.global }}
 branding:
