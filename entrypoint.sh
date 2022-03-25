@@ -22,6 +22,10 @@ if [ ! -z "${INPUT_BUILDARGS}" ]; then
   done
 fi
 
+if [ -z "$file" ]; then
+  file="okteto.yml"
+fi
+
 params=$(eval echo --progress plain -t "$tag" -f "$file" "$BUILDPARAMS" )
 if [ -z "$tag" ]; then
   params=$(eval echo --progress plain -f "$file" "$BUILDPARAMS")
@@ -33,10 +37,10 @@ if [ "$global" = "true" ]; then
 fi
 
 if [ ! -z "$services" ]; then
-  SERVICES="${services}"
+    params="${params} ${services}"
 fi
 
-params=$(eval echo "$params" "$SERVICES")
+params=$(eval echo "$params")
 
 echo running: okteto build $params
 okteto build $params
