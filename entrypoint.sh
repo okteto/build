@@ -1,9 +1,8 @@
 #!/bin/sh
 set -e
 
-file=$1
-services=$2
-global=$3
+file=$2
+global=$5
 
 BUILDPARAMS=""
 
@@ -13,22 +12,10 @@ if [ ! -z "$OKTETO_CA_CERT" ]; then
    update-ca-certificates
 fi
 
-if [ -z "$file" ]; then
-  file="okteto.yml"
-fi
-
-params=$(eval echo --progress plain -f "$file" )
+params=$(eval echo --progress plain -f "$file")
 
 if [ "$global" = "true" ]; then
     params="${params} --global"
-fi
-
-SERVICESPARAMS=""
-if [ ! -z "$services" ]; then
-  for s in $(echo $services | tr "," "\n"); do
-    SERVICESPARAMS="${SERVICESPARAMS} ${s}"
-  done
-    params="${params} ${SERVICESPARAMS}"
 fi
 
 params=$(eval echo "$params")
