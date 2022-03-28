@@ -1,6 +1,7 @@
 # GitHub Actions for Okteto Cloud
 
 ## Automate your development workflows using Github Actions and Okteto Cloud
+
 GitHub Actions gives you the flexibility to build an automated software development workflows. With GitHub Actions for Okteto Cloud you can create workflows to build, deploy and update your applications in [Okteto Cloud](https://cloud.okteto.com).
 
 Get started today with a [free Okteto Cloud account](https://cloud.okteto.com)!
@@ -14,12 +15,25 @@ You can use this action to build images from an [Okteto Manifest](https://www.ok
 ### `file`
 
 The path to the Okteto Manifest. Default `"okteto.yml"`.
-Name of the Dockerfile. Default `"Dockerfile"`.
+
+### `services`
+
+Select the services to build. This name must match the one declared at build section of the okteto manifest.
+
+Build multiple services:
+
+```yaml
+with:
+  services:
+    - api
+    - frontend
+```
+
+Default will build all the services.
 
 ### `global`
 
 When true will make the image available to everyone in your team. Default `false`.
-
 
 ## Example usage
 
@@ -32,33 +46,37 @@ on: [push]
 name: example
 
 jobs:
-
   devflow:
     runs-on: ubuntu-latest
     steps:
-    
-    - uses: okteto/context@latest
-      with:
-        token: ${{ secrets.OKTETO_TOKEN }}
-    
-    - name: "Build"
-      uses: okteto/build@latest
+      - uses: okteto/context@latest
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+
+      - name: "Build"
+        uses: okteto/build@latest
 ```
 
 ## Advanced usage
 
- ### Custom Certification Authorities or Self-signed certificates
+### Custom Certification Authorities or Self-signed certificates
 
- You can specify a custom certificate authority or a self-signed certificate by setting the `OKTETO_CA_CERT` environment variable. When this variable is set, the action will install the certificate in the container, and then execute the action. 
+You can specify a custom certificate authority or a self-signed certificate by setting the `OKTETO_CA_CERT` environment variable. When this variable is set, the action will install the certificate in the container, and then execute the action.
 
- Use this option if you're using a private Certificate Authority or a self-signed certificate in your [Okteto Enterprise](http://okteto.com/enterprise) instance.  We recommend that you store the certificate as an [encrypted secret](https://docs.github.com/en/actions/reference/encrypted-secrets), and that you define the environment variable for the entire job, instead of doing it on every step.
+Use this option if you're using a private Certificate Authority or a self-signed certificate in your [Okteto Enterprise](http://okteto.com/enterprise) instance. We recommend that you store the certificate as an [encrypted secret](https://docs.github.com/en/actions/reference/encrypted-secrets), and that you define the environment variable for the entire job, instead of doing it on every step.
 
+```yaml
+# File: .github/workflows/workflow.yml
+on: [push]
 
- ```yaml
- # File: .github/workflows/workflow.yml
- on: [push]
+name: example
 
- name: example
+jobs:
+  devflow:
+    runs-on: ubuntu-latest
+    env:
+      OKTETO_CA_CERT: ${{ secrets.OKTETO_CA_CERT }}
+    steps:
 
  jobs:
    devflow:
@@ -66,11 +84,11 @@ jobs:
      env:
        OKTETO_CA_CERT: ${{ secrets.OKTETO_CA_CERT }}
      steps:
-     
+
      - uses: okteto/context@latest
        with:
          token: ${{ secrets.OKTETO_TOKEN }}
-     
+
     - name: "Build"
       uses: okteto/build@latest
- ```
+```
