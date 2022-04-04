@@ -19,6 +19,7 @@ Name of the Dockerfile. Default `"Dockerfile"`.
 ### `global`
 
 When true will make the image available to everyone in your team. Default `false`.
+Only admins can push images to the global registry.
 
 
 ## Example usage
