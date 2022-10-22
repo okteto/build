@@ -67,7 +67,10 @@ jobs:
      env:
        OKTETO_CA_CERT: ${{ secrets.OKTETO_CA_CERT }}
      steps:
-     
+
+     - name: checkout
+       uses: actions/checkout@master
+       
      - uses: okteto/context@latest
        with:
          token: ${{ secrets.OKTETO_TOKEN }}
