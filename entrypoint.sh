@@ -1,24 +1,42 @@
 #!/bin/sh
 set -e
 
+tag=$1
 file=$2
+path=$3
+buildargs=$4
 global=$5
 
-BUILDPARAMS=""
-
-if [ ! -z "$OKTETO_CA_CERT" ]; then
+if [ -n "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
    echo "$OKTETO_CA_CERT" > /usr/local/share/ca-certificates/okteto_ca_cert.crt
    update-ca-certificates
 fi
 
-params=$(eval echo --progress plain -f "$file")
+params=""
 
-if [ "$global" = "true" ]; then
-    params="${params} --global"
+if [ -n "$tag" ]; then
+params="${params} --tag=${tag}"
 fi
 
-params=$(eval echo "$params")
+if [ -n "$file" ]; then
+params="${params} --file=${file}"
+fi
 
-echo running: okteto build $params
+if [ "$global" = "true" ]; then
+params="${params} --global"
+fi
+
+if [ -n "$buildargs" ]; then
+IFS=',' ;for i in $buildargs; do 
+    params="${params} --build-arg=${i}"
+done
+fi
+
+if [ -n "$path" ]; then
+cd "$path"
+fi
+
+echo running: "okteto build $params"
+okteto version
 okteto build $params
