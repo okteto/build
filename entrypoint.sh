@@ -38,4 +38,5 @@ cd "$path"
 fi
 
 echo running: "okteto build $params"
+okteto version
 okteto build $params
