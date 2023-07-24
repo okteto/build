@@ -38,4 +38,4 @@ cd "$path"
 fi
 
 echo running: "okteto build $params"
-#okteto build $params
+okteto build $params
