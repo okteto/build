@@ -13,8 +13,7 @@ You can use this action to build images from an [Okteto Manifest](https://www.ok
 
 ### `file`
 
-The path to the Okteto Manifest. Default `"okteto.yml"`.
-Name of the Dockerfile. Default `"Dockerfile"`.
+The path to the Okteto Manifest or name of the Dockerfile.
 
 ## Example usage
 

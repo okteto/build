@@ -11,7 +11,12 @@ if [ ! -z "$OKTETO_CA_CERT" ]; then
    update-ca-certificates
 fi
 
-params=$(eval echo --progress plain -f "$file")
+params=$(eval echo --progress plain)
+
+if [ ! -z $file ]; then
+   params=$(eval echo "$params" -f "$file")
+fi
+
 
 params=$(eval echo "$params")
 

@@ -5,9 +5,8 @@ inputs:
     description: 'Name and tag in the "name:tag" format'
     required: false
   file:
-    description: 'Name of the Dockerfile (Default is "Dockerfile")'
+    description: 'Name of the Okteto Manifest or Dockerfile'
     required: false
-    default: 'Dockerfile'
   path:
     description: 'The path'
     required: false
