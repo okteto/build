@@ -11,6 +11,14 @@ You can use this action to build images from an [Okteto Manifest](https://www.ok
 
 ## Inputs
 
+### `tag`
+
+The image tag used for the build.
+
+If `Dockerfile` is provided as `file` argument and no `tag` is provided, the image won't be pushed to the registry after the build.
+
+When using Okteto Manifest for the build, the tag is inferred or used from the Manifest.
+
 ### `file`
 
 The path to the Okteto Manifest or name of the Dockerfile.

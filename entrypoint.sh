@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+tag=$1
 file=$2
 
 BUILDPARAMS=""
@@ -12,6 +13,10 @@ if [ ! -z "$OKTETO_CA_CERT" ]; then
 fi
 
 params=$(eval echo --progress plain)
+
+if [ ! -z $tag ]; then
+   params=$(eval echo "$params" -t "$tag")
+fi
 
 if [ ! -z $file ]; then
    params=$(eval echo "$params" -f "$file")
