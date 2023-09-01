@@ -35,8 +35,9 @@ if [ ! -z $file ]; then
 fi
 
 if [ ! -z $buildargs ]; then
-   IFS=',' ;for i in $buildargs; do 
-      params="${params} --build-arg=${i}"
+   IFS=',' read -ra ARG <<< "$buildargs"
+   for i in "${ARG[@]}"; do 
+      params=$(eval echo "$params" --build-arg "$i")
    done
 fi
 
