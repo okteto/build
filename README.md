@@ -23,6 +23,13 @@ When using Okteto Manifest for the build, the tag is inferred or used from the M
 
 The path to the Okteto Manifest or name of the Dockerfile.
 
+### `path`
+
+The path where the build is run. 
+For repositories with Okteto Manifest, path represents the service of the Manifest to be built. Context is defined in the manifest.
+
+For repositories with Dockerfile, path represents the directory where the build should be run.
+
 ## Example usage
 
 This example runs the context action and then builds and pushes an image.
