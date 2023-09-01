@@ -28,6 +28,10 @@ Service from the Okteto Manifest to build. You can select the service to build p
 
 When repository does not have an Okteto Manifest of `Dockerfile` is provided at `file`, `path` determines the context where the build should run.
 
+### `buildargs`
+
+A list of comma-separated build arguments.
+
 ## Example usage
 
 ### Build and push images for all services described at an Okteto Manifest

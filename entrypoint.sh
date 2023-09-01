@@ -4,6 +4,7 @@ set -e
 tag=$1
 file=$2
 path=$3
+buildargs=$4
 
 if [ ! -z "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
@@ -31,6 +32,12 @@ fi
 
 if [ ! -z $file ]; then
    params=$(eval echo "$params" -f "$file")
+fi
+
+if [ ! -z $buildargs ]; then
+   IFS=',' ;for i in $buildargs; do 
+      params="${params} --build-arg=${i}"
+   done
 fi
 
 echo running: okteto $command $params
