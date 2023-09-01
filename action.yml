@@ -13,6 +13,18 @@ inputs:
   buildargs:
     description: 'Use buildargs when you want to pass a list of environment variables as build-args'
     required: false
+  no-cache:
+    description: 'Do not use cache when building the image'
+    required: false
+  cache-from:
+    description: 'List of cache source images'
+    required: false
+  export-cache:
+    description: 'List of exported cache images'
+    required: false
+  secrets:
+    description: 'Secret files exposed to the build. Format: id=mysecret,src=/local/secret'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -21,6 +33,11 @@ runs:
     - ${{ inputs.file }}
     - ${{ inputs.path }}
     - ${{ inputs.buildargs }}
+    - ${{ inputs.no-cache }}
+    - ${{ inputs.cache-from }}
+    - ${{ inputs.export-cache }}
+    - ${{ inputs.secrets }}
+
 branding:
   color: 'green'
   icon: 'layers'

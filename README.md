@@ -32,6 +32,22 @@ When repository does not have an Okteto Manifest or `Dockerfile` is provided at 
 
 A list of comma-separated build arguments.
 
+### `no-cache`
+
+Set to "true" when no cache should be used when building the image
+
+### `cache-from`
+
+A list of comma-separated images from cache should be imported.
+
+### `export-cache`
+
+A list of comma-separated images where cache should be exported.
+
+### `secrets`
+
+A list of semi-colon secrets. Each with format: id=mysecret,src=/local/secret
+
 ## Example usage
 
 ### Build and push images for all services described at an Okteto Manifest
