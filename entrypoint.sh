@@ -2,7 +2,6 @@
 set -e
 
 file=$2
-global=$5
 
 BUILDPARAMS=""
 
@@ -13,10 +12,6 @@ if [ ! -z "$OKTETO_CA_CERT" ]; then
 fi
 
 params=$(eval echo --progress plain -f "$file")
-
-if [ "$global" = "true" ]; then
-    params="${params} --global"
-fi
 
 params=$(eval echo "$params")
 

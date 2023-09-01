@@ -16,12 +16,6 @@ You can use this action to build images from an [Okteto Manifest](https://www.ok
 The path to the Okteto Manifest. Default `"okteto.yml"`.
 Name of the Dockerfile. Default `"Dockerfile"`.
 
-### `global`
-
-When true will make the image available to everyone in your team. Default `false`.
-Only admins can push images to the global registry.
-
-
 ## Example usage
 
 This example runs the context action and then builds and pushes an image.
