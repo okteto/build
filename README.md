@@ -18,15 +18,15 @@ Name and optionally a tag in the `name:tag` format for the build. When `file` po
 
 ### `file`
 
-Path to the Okteto Manifest. If no `file` is provided, `okteto build` will lookup for the Okteto Manifest file.
+The relative path to the Okteto Manifest.
 
-You can also use the `file` to point to a `Dockerfile`. In this mode, `okteto build` will ignore your Okteto Manifest, and directly build the image defined in the `Dockerfile`. Use this to build images that are not defined on your Okteto Manifest.
+> You can also use this input to point to a Dockerfile. In this mode, okteto build will ignore your Okteto manifest, and directly build the image defined in the Dockerfile. Use this to build images that are not defined on your Okteto manifest.
 
 ### `path`
 
 Service from the Okteto Manifest to build. You can select the service to build providing the `path`, otherwise all images at the Okteto Manifest build definition would be build.
 
-When repository does not have an Okteto Manifest of `Dockerfile` is provided at `file`, `path` determines the context where the build should run.
+When repository does not have an Okteto Manifest or `Dockerfile` is provided at `file`, `path` is the execution path of the action. .
 
 ### `buildargs`
 
@@ -83,7 +83,7 @@ jobs:
 
 ### Build and push images that are not defined on your Okteto manifest.
 
-This example runs the context action `okteto/context@latest` and then builds and pushes the image for a Dockerfile not included at the Okteto Manifest.
+This example sets the context, and then builds an image that is not defined in the Okteto Manifest.
 
 ```yaml
 # File: .github/workflows/workflow.yml
@@ -103,9 +103,9 @@ jobs:
       - name: "Build"
         uses: okteto/build@latest
         with:
-          tag: myapp:latest
+          tag: myapp-backend:latest
           file: Dockerfile
-          path: "."
+          path: backend
 ```
 
 If `tag` is not provided, the image won't be pushed to the registry.
