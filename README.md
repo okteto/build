@@ -38,11 +38,11 @@ Set to "true" when no cache should be used when building the image
 
 ### `cache-from`
 
-A list of comma-separated images from cache should be imported.
+A list of comma-separated images where cache should be imported from.
 
 ### `export-cache`
 
-A list of comma-separated images where cache should be exported.
+A list of comma-separated images where cache should be exported to.
 
 ### `secrets`
 
@@ -72,7 +72,7 @@ jobs:
         uses: okteto/build@latest
 ```
 
-### Build and push images for single service described at an Okteto Manifest
+### Build and push images for single service described in the Okteto Manifest
 
 This example runs the context action `okteto/context@latest` and then builds and pushes the image for the service `service`. A valid Okteto Manifest should exist at the repository.
 
@@ -97,7 +97,7 @@ jobs:
           path: service
 ```
 
-### Build and push images that are not defined on your Okteto manifest.
+### Build and push images that are not defined in your Okteto manifest.
 
 This example sets the context, and then builds an image that is not defined in the Okteto Manifest.
 
