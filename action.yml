@@ -2,23 +2,29 @@ name: 'Okteto Build'
 description: 'Build an image from a Dockerfile using Okteto Cloud'
 inputs:
   tag:
-    description: 'Name and tag in the "name:tag" format'
+    description: 'Name and tag for the image in the "name:tag" format'
     required: false
   file:
-    description: 'Name of the Dockerfile (Default is "Dockerfile")'
+    description: 'Name of the file for the Okteto Manifest or Dockerfile.'
     required: false
-    default: 'Dockerfile'
   path:
-    description: 'The path'
+    description: 'Path where the build is run.'
     required: false
-    default: '.'
   buildargs:
     description: 'Use buildargs when you want to pass a list of environment variables as build-args'
     required: false
-  global:
-    description: 'Use global when you want to make the image availbale to everyone in your team'
+  no-cache:
+    description: 'Do not use cache when building the image'
     required: false
-    default: false
+  cache-from:
+    description: 'List of cache source images'
+    required: false
+  export-cache:
+    description: 'List of exported cache images'
+    required: false
+  secrets:
+    description: 'Secret files exposed to the build. Format: id=mysecret,src=/local/secret'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -27,7 +33,11 @@ runs:
     - ${{ inputs.file }}
     - ${{ inputs.path }}
     - ${{ inputs.buildargs }}
-    - ${{ inputs.global }}
+    - ${{ inputs.no-cache }}
+    - ${{ inputs.cache-from }}
+    - ${{ inputs.export-cache }}
+    - ${{ inputs.secrets }}
+
 branding:
   color: 'green'
   icon: 'layers'
