@@ -10,7 +10,7 @@ cachefrom=$6
 exportcache=$7
 secrets=$8
 
-if [ ! -z "$OKTETO_CA_CERT" ]; then
+if [ -n "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
    echo "$OKTETO_CA_CERT" > /usr/local/share/ca-certificates/okteto_ca_cert.crt
    update-ca-certificates
@@ -24,51 +24,72 @@ fi
 
 command="build"
 
-if [ ! -z $path ]; then
+if [ -n "$path" ]; then
    command=$(eval echo "$command" "$path")
 fi
 
 params=$(eval echo --progress plain)
 
-if [ ! -z $tag ]; then
+if [ -n "$tag" ]; then
    params=$(eval echo "$params" -t "$tag")
 fi
 
-if [ ! -z $file ]; then
+if [ -n "$file" ]; then
    params=$(eval echo "$params" -f "$file")
 fi
 
-if [ ! -z $buildargs ]; then
-   IFS=',' read -ra ARG <<< "$buildargs"
-   for i in "${ARG[@]}"; do 
-      params=$(eval echo "$params" --build-arg "$i")
+if [ -n "$buildargs" ]; then
+   IFS=',' 
+   # shellcheck disable=SC2086
+   set -- $buildargs
+   unset IFS
+
+   while [ $# -gt 0 ]; do
+      params=$(eval echo "$params" --build-arg "$1")
+      shift
    done
 fi
 
 if [ "$nocache" = "true" ]; then
-   params="${params} --no-cache"
+      params=$(eval echo "$params" --no-cache)
 fi
 
-if [ ! -z $cachefrom ]; then
-   IFS=',' read -ra CACHEF <<< "$cachefrom"
-   for i in "${CACHEF[@]}"; do 
-      params=$(eval echo "$params" --cache-from "$i")
+if [ -n "$cachefrom" ]; then
+   IFS=','
+   # shellcheck disable=SC2086
+   set -- $cachefrom
+   unset IFS
+
+   while [ $# -gt 0 ]; do
+      params=$(eval echo "$params" --cache-from "$1")
+      shift
    done
 fi
 
-if [ ! -z $exportcache ]; then
-   IFS=',' read -ra ECACHE <<< "$exportcache"
-   for i in "${ECACHE[@]}"; do 
-      params=$(eval echo "$params" --export-cache "$i")
+if [ -n "$exportcache" ]; then
+   IFS=','
+   # shellcheck disable=SC2086
+   set -- $exportcache
+   unset IFS
+
+   while [ $# -gt 0 ]; do
+      params=$(eval echo "$params" --export-cache "$1")
+      shift
    done
 fi
 
-if [ ! -z $secrets ]; then
-   IFS=';' read -ra SECRET <<< "$secrets"
-   for i in "${SECRET[@]}"; do 
-      params=$(eval echo "$params" --secret "$i")
+if [ -n "$secrets" ]; then
+   IFS=';'
+   # shellcheck disable=SC2086
+   set -- $secrets
+   unset IFS
+
+   while [ $# -gt 0 ]; do
+      params=$(eval echo "$params" --secret "$1")
+      shift
    done
 fi
 
-echo running: okteto $command $params
+echo running: okteto "$command" "$params"
+# shellcheck disable=SC2086
 okteto $command $params
