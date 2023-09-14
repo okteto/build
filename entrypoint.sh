@@ -69,7 +69,7 @@ fi
 if [ -n "$exportcache" ]; then
    IFS=','
    # shellcheck disable=SC2086
-   set -- $cachefrom
+   set -- $exportcache
    unset IFS
 
    while [ $# -gt 0 ]; do
