@@ -9,6 +9,7 @@ nocache=$5
 cachefrom=$6
 exportcache=$7
 secrets=$8
+platform=$9
 
 if [ -n "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
