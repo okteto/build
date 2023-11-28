@@ -48,6 +48,10 @@ A list of comma-separated images where cache should be exported to.
 
 A list of semi-colon secrets. Each with format: id=mysecret,src=/local/secret
 
+### `plaform`
+
+A list of semi-colon target platforms to build
+
 ## Example usage
 
 ### Build and push images for all services described at an Okteto Manifest

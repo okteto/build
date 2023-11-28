@@ -25,6 +25,9 @@ inputs:
   secrets:
     description: 'Secret files exposed to the build. Format: id=mysecret,src=/local/secret'
     required: false
+  platform:
+    description: 'Set target platform for build'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -37,6 +40,7 @@ runs:
     - ${{ inputs.cache-from }}
     - ${{ inputs.export-cache }}
     - ${{ inputs.secrets }}
+    - ${{ inputs.platform }}
 
 branding:
   color: 'green'

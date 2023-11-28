@@ -39,7 +39,7 @@ if [ -n "$file" ]; then
 fi
 
 if [ -n "$buildargs" ]; then
-   IFS=',' 
+   IFS=','
    # shellcheck disable=SC2086
    set -- $buildargs
    unset IFS
@@ -89,6 +89,11 @@ if [ -n "$secrets" ]; then
       shift
    done
 fi
+
+if [ -n "$platform" ]; then
+   params=$(eval echo "$params" --platform "$platform")
+fi
+
 
 echo running: okteto "$command" "$params"
 # shellcheck disable=SC2086
