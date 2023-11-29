@@ -9,6 +9,7 @@ nocache=$5
 cachefrom=$6
 exportcache=$7
 secrets=$8
+platform=$9
 
 if [ -n "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
@@ -39,7 +40,7 @@ if [ -n "$file" ]; then
 fi
 
 if [ -n "$buildargs" ]; then
-   IFS=',' 
+   IFS=','
    # shellcheck disable=SC2086
    set -- $buildargs
    unset IFS
@@ -89,6 +90,11 @@ if [ -n "$secrets" ]; then
       shift
    done
 fi
+
+if [ -n "$platform" ]; then
+   params=$(eval echo "$params" --platform "$platform")
+fi
+
 
 echo running: okteto "$command" "$params"
 # shellcheck disable=SC2086
