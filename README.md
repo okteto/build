@@ -70,6 +70,7 @@ jobs:
     steps:
       - uses: okteto/context@latest
         with:
+          url: https://okteto.example.com
           token: ${{ secrets.OKTETO_TOKEN }}
 
       - name: "Build"
