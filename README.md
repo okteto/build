@@ -1,14 +1,12 @@
-# GitHub Actions for Okteto Cloud
+# GitHub Actions for Okteto
 
-## Automate your development workflows using Github Actions and Okteto Cloud
+## Automate your development workflows using Github Actions and Okteto
 
-GitHub Actions gives you the flexibility to build an automated software development workflows. With GitHub Actions for Okteto Cloud you can create workflows to build, deploy and update your applications in [Okteto Cloud](https://cloud.okteto.com).
+GitHub Actions gives you the flexibility to build automated software development workflows. With GitHub Actions for Okteto you can create workflows to build, deploy and update your applications in [Okteto](okteto.com).
 
-Get started today with a [free Okteto Cloud account](https://cloud.okteto.com)!
+## Github Action for Building your Containers in Okteto
 
-## Github Action for Building your Containers in Okteto Cloud
-
-You can use this action to build images from an [Okteto Manifest](https://www.okteto.com/docs/reference/cli/).
+You can use this action to build images from an [Okteto Manifest](https://www.okteto.com/docs/reference/manifest/).
 
 ## Inputs
 
@@ -136,7 +134,7 @@ If `tag` is not provided, the image won't be pushed to the registry.
 
 You can specify a custom certificate authority or a self-signed certificate by setting the `OKTETO_CA_CERT` environment variable. When this variable is set, the action will install the certificate in the container, and then execute the action.
 
-Use this option if you're using a private Certificate Authority or a self-signed certificate in your [Okteto Enterprise](http://okteto.com/enterprise) instance. We recommend that you store the certificate as an [encrypted secret](https://docs.github.com/en/actions/reference/encrypted-secrets), and that you define the environment variable for the entire job, instead of doing it on every step.
+Use this option if you're using a private Certificate Authority or a self-signed certificate in your [Okteto SH](https://www.okteto.com/docs/self-hosted/) instance. We recommend that you store the certificate as an [encrypted secret](https://docs.github.com/en/actions/reference/encrypted-secrets), and that you define the environment variable for the entire job, instead of doing it on every step.
 
 ```yaml
 # File: .github/workflows/workflow.yml
