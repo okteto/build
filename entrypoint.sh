@@ -95,7 +95,7 @@ if [ -n "$platform" ]; then
    params=$(eval echo "$params" --platform "$platform")
 fi
 
-log_level=$10
+log_level=${10}
 
 if [ ! -z "$log_level" ]; then
   if [ "$log_level" = "debug" ] || [ "$log_level" = "info" ] || [ "$log_level" = "warn" ] || [ "$log_level" = "error" ] ; then
