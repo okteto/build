@@ -28,6 +28,9 @@ inputs:
   platform:
     description: 'Set target platform for build'
     required: false
+  log-level:
+    description: "Log level string. Valid options are debug, info, warn, error"
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -41,6 +44,7 @@ runs:
     - ${{ inputs.export-cache }}
     - ${{ inputs.secrets }}
     - ${{ inputs.platform }}
+    - ${{ inputs.log-level }}  
 
 branding:
   color: 'green'

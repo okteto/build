@@ -95,7 +95,24 @@ if [ -n "$platform" ]; then
    params=$(eval echo "$params" --platform "$platform")
 fi
 
+log_level=$10
 
-echo running: okteto "$command" "$params"
+if [ ! -z "$log_level" ]; then
+  if [ "$log_level" = "debug" ] || [ "$log_level" = "info" ] || [ "$log_level" = "warn" ] || [ "$log_level" = "error" ] ; then
+    log_level="--log-level ${log_level}"
+  else
+    echo "log-level supported: debug, info, warn, error"
+    exit 1
+  fi
+fi
+
+# https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging
+# https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
+if [ "${RUNNER_DEBUG}" = "1" ]; then
+  log_level="--log-level debug"
+fi
+
+
+echo running: okteto "$command" "$params" $log_level
 # shellcheck disable=SC2086
-okteto $command $params
+okteto $command $params $log_level
