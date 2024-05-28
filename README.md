@@ -52,6 +52,10 @@ A list of semi-colon secrets. Each with format: id=mysecret,src=/local/secret
 
 A list of semi-colon target platforms to build
 
+### `log-level`
+
+Log level used. Supported values are: `debug`, `info`, `warn`, `error`. (defaults to warn)
+
 ## Example usage
 
 ### Build and push images for all services described at an Okteto Manifest
