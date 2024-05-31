@@ -98,12 +98,7 @@ fi
 log_level=${10}
 
 if [ ! -z "$log_level" ]; then
-  if [ "$log_level" = "debug" ] || [ "$log_level" = "info" ] || [ "$log_level" = "warn" ] || [ "$log_level" = "error" ] ; then
-    log_level="--log-level ${log_level}"
-  else
-    echo "unsupported log-level ${log_level}, supported options are: debug, info, warn, error"
-    exit 1
-  fi
+   log_level="--log-level ${log_level}"
 fi
 
 # https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging
