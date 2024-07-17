@@ -68,6 +68,11 @@ on: [push]
 
 name: example
 
+concurrency:
+  # more info here: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   devflow:
     runs-on: ubuntu-latest
