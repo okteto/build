@@ -48,6 +48,7 @@ runs:
     - ${{ inputs.secrets }}
     - ${{ inputs.platform }}
     - ${{ inputs.log-level }}  
+    - ${{ inputs.target }} 
 
 branding:
   color: 'green'
