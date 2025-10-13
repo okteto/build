@@ -10,8 +10,8 @@ cachefrom=$6
 exportcache=$7
 secrets=$8
 platform=$9
-log_level=$10
-target=$11
+log_level=${10}
+target=${11}
 
 if [ -n "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
