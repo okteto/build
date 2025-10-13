@@ -10,6 +10,8 @@ cachefrom=$6
 exportcache=$7
 secrets=$8
 platform=$9
+log_level=$10
+target=$11
 
 if [ -n "$OKTETO_CA_CERT" ]; then
    echo "Custom certificate is provided"
@@ -95,10 +97,12 @@ if [ -n "$platform" ]; then
    params=$(eval echo "$params" --platform "$platform")
 fi
 
-log_level=${10}
-
 if [ ! -z "$log_level" ]; then
    log_level="--log-level ${log_level}"
+fi
+
+if [ -n "$target" ]; then
+   params=$(eval echo "$params" --target "$target")
 fi
 
 # https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging

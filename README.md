@@ -32,6 +32,10 @@ When repository does not have an Okteto Manifest or `Dockerfile` is provided at 
 
 A list of comma-separated build arguments.
 
+### `target`
+
+Specific target stage to build image.
+
 ### `no-cache`
 
 Set to "true" when no cache should be used when building the image
