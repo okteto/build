@@ -13,6 +13,9 @@ inputs:
   buildargs:
     description: 'Use buildargs when you want to pass a list of environment variables as build-args'
     required: false
+  target:
+    description: 'Use specific target stage to build image'
+    required: false
   no-cache:
     description: 'Do not use cache when building the image'
     required: false
@@ -45,6 +48,7 @@ runs:
     - ${{ inputs.secrets }}
     - ${{ inputs.platform }}
     - ${{ inputs.log-level }}  
+    - ${{ inputs.target }} 
 
 branding:
   color: 'green'
