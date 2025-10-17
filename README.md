@@ -34,7 +34,7 @@ A list of comma-separated build arguments.
 
 ### `target`
 
-Specific target stage to build image.
+Specific target stage to build image. Only available with a Dockerfile file.
 
 ### `no-cache`
 
@@ -42,7 +42,7 @@ Set to "true" when no cache should be used when building the image
 
 ### `cache-from`
 
-A list of comma-separated images where cache should be imported from.
+A list of comma-separated images where cache should be imported from. Only available with a Dockerfile file.
 
 ### `export-cache`
 
@@ -50,7 +50,7 @@ A list of comma-separated images where cache should be exported to.
 
 ### `secrets`
 
-A list of semi-colon secrets. Each with format: id=mysecret,src=/local/secret
+A list of semi-colon secrets. Each with format: id=mysecret,src=/local/secret. Only available with a Dockerfile file.
 
 ### `platform`
 
