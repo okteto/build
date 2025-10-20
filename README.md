@@ -34,7 +34,7 @@ A list of comma-separated build arguments.
 
 ### `target`
 
-Specific target stage to build image. Only available with a Dockerfile file.
+Specific target stage to build image. Only available when `file` refers to a Dockerfile instead of an Okteto Manifest.
 
 ### `no-cache`
 
