@@ -42,7 +42,7 @@ Set to "true" when no cache should be used when building the image
 
 ### `cache-from`
 
-A list of comma-separated images where cache should be imported from. Only available with a Dockerfile file.
+A list of comma-separated images where cache should be imported from. Specific target stage to build image. Only available when `file` refers to a Dockerfile instead of an Okteto Manifest.
 
 ### `export-cache`
 
