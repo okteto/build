@@ -50,7 +50,7 @@ A list of comma-separated images where cache should be exported to.
 
 ### `secrets`
 
-A list of semi-colon secrets. Each with format: id=mysecret,src=/local/secret. Only available with a Dockerfile file.
+A list of semi-colon secrets. Each with format: id=mysecret,src=/local/secret. Specific target stage to build image. Only available when `file` refers to a Dockerfile instead of an Okteto Manifest.
 
 ### `platform`
 
